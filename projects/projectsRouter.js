@@ -68,6 +68,3 @@ router.get('/:id', async (req, res) => {
 })
 
 module.exports = router;
-// db.getProjects()
-// .then(projects => console.log(projects))
-// .catch(error => console.log(error))
