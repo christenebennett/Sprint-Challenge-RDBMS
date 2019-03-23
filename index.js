@@ -1,12 +1,20 @@
 const express = require('express');
-const db = require('./data/dbHelpers');
 const server = express();
 const parser = express.json();
 
+const ProjectsRouter = require('./projects/projectsRouter');
+const ActionsRouter = require('./actions/actionsRouter');
+
 server.use(parser);
 
-server.get('/api/projects')
+server.use('/api/projects', ProjectsRouter);
+server.use('/api/actions', ActionsRouter);
 
+server.get('/', (req, res) => {
+  res.send(`
+    <h1>Welcome to the RDBMS Sprint Challenge API!</h1>
+  `)
+})
 // db.getProjectById(1)
 //   .then(project => console.log(project))
 //   .catch(error => console.log(error))
