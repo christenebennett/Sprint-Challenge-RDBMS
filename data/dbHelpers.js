@@ -20,6 +20,7 @@ module.exports = {
 function getProjectById(id){
   return db('projects')
     .where({id: Number(id)})
+    .first();
 }
 
 // retrieve all projects
@@ -30,8 +31,7 @@ function getProjects(){
 // retrieve actions for given project id
 function getActionsByProjectId(id){
   return db('actions')
-    .where({project_id: Number(id)})
-    .first();
+    .where({project_id: Number(id)});
 }
 
 // add new project
