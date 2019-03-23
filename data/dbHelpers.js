@@ -24,13 +24,14 @@ function getProjectById(id){
 
 // retrieve all projects
 function getProjects(){
-  return db('projects');
+  return db('projects')
 }
 
 // retrieve actions for given project id
 function getActionsByProjectId(id){
   return db('actions')
     .where({project_id: Number(id)})
+    .first();
 }
 
 // add new project
