@@ -46,9 +46,7 @@ router.post('/:id/actions', async (req, res) => {
 
 //  GET for retrieving a project by its id that returns an object 
 router.get('/:id', async (req, res) => {
-  const {
-    id
-  } = req.params;
+  const {id} = req.params;
   try {
     const project = await db.getProjectById(id);
     const actions = await db.getActionsByProjectId(id);
@@ -72,26 +70,34 @@ router.delete('/:id', async (req, res) => {
   try {
     const project = await db.deleteProject(id);
     if (project) {
-      res.status(200).json({deletedProject: project});
+      res.status(200).json({
+        deletedProject: project
+      });
     } else {
-      res.status(404).json({err: 'The project associated with the specified ID was not found.'})
+      res.status(404).json({
+        err: 'The project associated with the specified ID was not found.'
+      })
     }
   } catch (error) {
-    res.status(500).json({err: 'The project failed to delete'});
+    res.status(500).json({
+      err: 'The project failed to delete'
+    });
   }
 })
-
 
 // DELETE action
 router.delete('/actions/:id', async (req, res) => {
   const {id} = req.params;
   try {
     const action = await db.deleteAction(id);
-    res.status(200).json({deletedAction: action});
+    res.status(200).json({
+      deletedAction: action
+    });
   } catch (error) {
-    res.status(500).json({err: 'The action failed to delete'});
+    res.status(500).json({
+      err: 'The action failed to delete'
+    });
   }
 })
-
 
 module.exports = router;
