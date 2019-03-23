@@ -31,7 +31,6 @@ router.post('/', async (req, res) => {
 
 //  POST for adding actions.
 router.post('/:id/actions', async (req, res) => {
-  // const {id} = req.params;
   try {
     const newAction = req.body;
     const action = await db.addAction(newAction);
