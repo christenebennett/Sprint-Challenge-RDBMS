@@ -9,7 +9,9 @@ module.exports = {
   getProjects,
   getActionsByProjectId,
   addProject,
-  addAction
+  addAction,
+  deleteProject,
+  deleteAction
 }
 
 
@@ -33,6 +35,12 @@ function addProject(project){
     .then(ids => ({id: ids[0]}));
 }
 
+// delete project
+function deleteProject(id){
+  return db('projects')
+    .where('id', id)
+    .del();
+}
 
 
 // Actions helper functions ------------------------
@@ -43,10 +51,16 @@ function getActionsByProjectId(id){
     .where({project_id: Number(id)});
 }
 
-
 // add new action
 function addAction(action){
   return db('actions')
     .insert(action)
     .then(ids => ({id: ids[0]}));
+}
+
+// delete action
+function deleteAction(id){
+  return db('actions')
+    .where('id', id)
+    .del();
 }
