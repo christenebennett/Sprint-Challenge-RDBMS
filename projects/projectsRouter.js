@@ -24,8 +24,19 @@ router.post('/', async (req, res) => {
 })
 
 //  POST for adding actions.
+router.post('/:id/actions', async (req, res) => {
+  // const {id} = req.params;
+  try {
+    const newAction = req.body;
+    const action = await db.addAction(newAction);
+    res.status(201).json({newAction: action})
+  } catch (err) {
+    res.status(500).json({err: 'The action could not be added to the project.'})
+  }
+})
 
 //  GET for retrieving a project by its id that returns an object 
+
 
 module.exports = router;
 // db.getProjects()
